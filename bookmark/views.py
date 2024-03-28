@@ -9,3 +9,14 @@ class ListView(generic.ListView):
     
     def get_queryset(self):
         return WebSite.objects.order_by('id')[:6]
+    
+class AddView(generic.DetailView):
+    model = WebSite
+    template_name = 'bookmark/add.html'
+
+class ModifyView(generic(generic.DetailView)):
+    model = WebSite
+    template_name = 'bookmark/modify.html'
+    
+class DeleteView():
+    pass #임시
