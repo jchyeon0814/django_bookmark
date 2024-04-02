@@ -1,6 +1,10 @@
 from django.urls import path, include
 
 from . import views
+
+app_name = 'bookmark'
+
 urlpatterns = [
-    path('', views.ListView.as_view(), name="list"),
+    path("", views.ListView.as_view(), name="list"),
+    path("add_page", views.AddView.as_view(), name="addPage"),
 ]
