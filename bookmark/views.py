@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
+
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.detail import DetailView
+
 from django.views import generic
 from django.http import HttpResponseRedirect
 
@@ -28,11 +31,27 @@ class BookmarkCreateView(CreateView):
     fields = ['siteName', 'url']
     template_name = "bookmark/add.html"
     success_url = reverse_lazy('bookmark:list') #model(WebSite)로 POST요청이 들어와서 정상 저장됐을 때 호출될 페이지
-    
-class ModifyView(generic.DetailView):
+
+'''
+북마크 상세 보기 페이지
+django.views.generic.detail.DetailView 상속하여 구현
+'''
+class BookmarkDetailView(DetailView):
     model = WebSite
+    template_name = "bookmark/detail.html"
+
+'''
+북마크 수정 페이지
+django.views.generic.edit.UpdateView 상속하여 구현
+'''
+class BookmarkModifyView(UpdateView):
+    model = WebSite
+    fields = ['siteName', 'url']
     template_name = "bookmark/modify.html"
 
+
+class BookmarkDeleteView:
+    pass  # 임시
 
 def add(request):
     webSite = WebSite()
@@ -41,6 +60,3 @@ def add(request):
     webSite.save();
     
     return HttpResponseRedirect("/bookmark")
-
-class DeleteView:
-    pass  # 임시
