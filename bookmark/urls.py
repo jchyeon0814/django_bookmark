@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import BookmarkListView, BookmarkCreateView, BookmarkDetailView, BookmarkModifyView
+from .views import BookmarkListView, BookmarkCreateView, BookmarkDetailView, BookmarkModifyView, BookmarkDeleteView
 
 app_name = 'bookmark'
 
@@ -8,4 +8,5 @@ urlpatterns = [
     path("add/", BookmarkCreateView.as_view(), name="add"),
     path("detail/<int:pk>/", BookmarkDetailView.as_view(), name="detail"),
     path("modify/<int:pk>/", BookmarkModifyView.as_view(), name="modify"),
+    path("delete/<int:pk>", BookmarkDeleteView.as_view(), name="delete"),
 ]

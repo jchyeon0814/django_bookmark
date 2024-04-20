@@ -39,7 +39,7 @@
                 <a href="{% url 'bookmark:modify' pk=webSite.id %}" class="btn btn-warning btn-sm">수정하기</a>
               </td>
               <td>
-                <a href="#" class="btn btn-danger btn-sm">삭제하기</a>
+                <a href="{% url 'bookmark:delete' pk=webSite.id %}" class="btn btn-danger btn-sm">삭제하기</a>
               </td>
             </tr>
           {% endfor %}

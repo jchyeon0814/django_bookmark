@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 
 from django.views import generic
@@ -49,14 +49,11 @@ class BookmarkModifyView(UpdateView):
     fields = ['siteName', 'url']
     template_name = "bookmark/modify.html"
 
-
-class BookmarkDeleteView:
-    pass  # 임시
-
-def add(request):
-    webSite = WebSite()
-    webSite.siteName = request.POST['siteName']
-    webSite.url = request.POST['url']
-    webSite.save();
-    
-    return HttpResponseRedirect("/bookmark")
+'''
+북마크 삭제
+django.views.generic.edit.DeleteView
+'''
+class BookmarkDeleteView(DeleteView):
+    model = WebSite
+    template_name = "bookmark/confirm_delete.html"
+    success_url = reverse_lazy('bookmark:list')
